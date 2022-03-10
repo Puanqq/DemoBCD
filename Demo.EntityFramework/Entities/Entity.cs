@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Demo.EntityFramework.Entities
@@ -8,6 +9,10 @@ namespace Demo.EntityFramework.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TPrimaryKey Id { get; set; }
+
+        //public DateTime CreatedTime { get; set; }
+
+        //public DateTime? ModifiedTime { get; set; }
     }
 
     public interface IEntity<TPrimaryKey> where TPrimaryKey : struct
@@ -15,5 +20,9 @@ namespace Demo.EntityFramework.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TPrimaryKey Id { get; set; }
+
+        //public DateTime CreatedTime { get; set; }
+
+        //public DateTime? ModifiedTime { get; set; }
     }
 }

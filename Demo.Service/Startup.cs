@@ -1,4 +1,4 @@
-using Demo.Service._Business.Consumers;
+using Demo.Service.Business.Consumers;
 using Demo.Service.Middlewares;
 using Demo.Service.Services;
 using MassTransit;
@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Linq;
 
 namespace Demo.Service
 {
@@ -30,6 +29,7 @@ namespace Demo.Service
             services.AddDbContextRegister(Configuration);
             services.AddJwtRegister(Configuration);
             services.AddManagerRegister(Configuration);
+            services.AddAutoMapper(Configuration);
             services.AddControllers();
 
             services.AddSwaggerGen(c =>

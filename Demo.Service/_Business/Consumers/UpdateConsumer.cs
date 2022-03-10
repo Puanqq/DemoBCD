@@ -1,14 +1,16 @@
 ﻿using Demo.EntityFramework.Entities;
-using Demo.Service._Dtos.Message;
+using Demo.Service.Dtos.Message;
+using Demo.Service.Base;
+using Demo.Service.Dtos;
 using Demo.UnitOfWork.interfaces;
 using MassTransit;
-using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.Service._Business.Consumers
+namespace Demo.Service.Business.Consumers
 {
     public class UpdateConsumer : IConsumer<TitleMessage>
     {
@@ -20,29 +22,29 @@ namespace Demo.Service._Business.Consumers
         }
         public async Task Consume(ConsumeContext<TitleMessage> context)
         {
-            Title title = context.Message.Title;
+            var title = context.Message.Title.JsonMapTo<TitleInputDto>();
 
-            var listOrganizations = await _organizationRepository.GetListAsync();
-            var organizationsNeedUpdate = listOrganizations.ToList();
-            if (!context.Message.IsUpdate)
+            var listOrganizations = await _organizationRepository.Query.Where(w => w.Titles.Contains(title.Id.ToString())).ToListAsync();
+
+            var flag = context.Message.IsUpdate;
+
+            foreach (var org in listOrganizations)
             {
-                organizationsNeedUpdate = listOrganizations.Where(x => x.Titles.Contains(title.Id.ToString())).ToList();
-            }
+                var listTitle = org.Titles.ConvertFromJson<List<TitleInputDto>>();
 
-            foreach(var org in organizationsNeedUpdate)
-            {
-                var listTitles = JsonConvert.DeserializeObject<List<Title>>(org.Titles);
+                var index = listTitle.FindIndex(f => f.Id == context.Message.Title.Id);
 
-                if (context.Message.IsUpdate)
+                if (flag)
                 {
-                    listTitles.Add(title);
+                    listTitle[index] = title;
                 }
                 else
                 {
-                    var titleNeedRemove = listTitles.First(t => t.Id == title.Id);
-                    listTitles.Remove(titleNeedRemove);
+                    listTitle.RemoveAt(index);
                 }
-                org.Titles = JsonConvert.SerializeObject(listTitles);
+
+                org.Titles = listTitle.ConvertToJson();
+
                 await _organizationRepository.UpdateAsync(org);
             }
         }

@@ -2,7 +2,7 @@
 using MassTransit;
 using System;
 
-namespace Demo.Service._Dtos.Message
+namespace Demo.Service.Dtos.Message
 {
     public class TitleMessage : CorrelatedBy<Guid>
     {

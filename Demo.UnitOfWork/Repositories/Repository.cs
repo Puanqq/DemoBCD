@@ -2,6 +2,7 @@
 using Demo.EntityFramework.Entities;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace Demo.UnitOfWork.Base
         public async Task<TEntity> InsertAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
+            _dbContext.Entry(entity).State = EntityState.Added;
             await SaveAsync();
             return entity;
         }
