@@ -23,7 +23,11 @@ namespace Demo.Service.Base
         
         public BaseCrudAsyncController(
             IRepository<TEntity, TPrimaryKey> repository
+<<<<<<< Updated upstream
         )
+=======
+, AutoMapper.IMapper mapper)
+>>>>>>> Stashed changes
         {
             _repository = repository;
         }

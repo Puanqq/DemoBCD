@@ -1,5 +1,6 @@
 ﻿using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
+using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Filters;
 using Demo.UnitOfWork.interfaces;
@@ -18,8 +19,16 @@ namespace Demo.Service.Business.Controllers
     [Authorize]
     public class TitleController : BaseCrudAsyncController<Title, TitleInputDto, TitleOutputDto, Guid>
     {
+<<<<<<< Updated upstream
         public TitleController(IRepository<Title, Guid> repository) : base(repository)
+=======
+        private readonly TitleManager _titleManager;
+        public TitleController(IRepository<Title, Guid> repository, 
+            IMapper mapper,
+            TitleManager titleManager) : base(repository, mapper)
+>>>>>>> Stashed changes
         {
+            _titleManager = titleManager;
         }
 
         [NotAllowSpecialCharacters("CodeValue")]
@@ -31,6 +40,7 @@ namespace Demo.Service.Business.Controllers
         [NotAllowSpecialCharacters("CodeValue")]
         public override Task<ActionResult> UpdateAsync([FromBody] TitleInputDto input)
         {
+            _titleManager.UpdateTitleOrganization(input.JsonMapTo<Title>()).Wait();
             return base.UpdateAsync(input);
         }
     }
