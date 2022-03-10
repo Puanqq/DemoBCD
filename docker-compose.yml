@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:  
+  mq:
+    image: bitnami/rabbitmq   
+    restart: on-failure
+    healthcheck:
+        test: "exit 0" 
+    ports:
+      - 15672:15672
+      - 5672:5672

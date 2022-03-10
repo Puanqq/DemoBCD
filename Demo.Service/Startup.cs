@@ -1,5 +1,7 @@
+using Demo.Service._Business.Consumers;
 using Demo.Service.Middlewares;
 using Demo.Service.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -69,6 +71,26 @@ namespace Demo.Service
                     });
             });
 
+            // config for RabbitMQ   
+            services.AddMassTransit(x => Bus.Factory.CreateUsingRabbitMq(configure =>
+            {
+                x.AddConsumer<UpdateConsumer>();                
+                x.UsingRabbitMq((context, config) =>
+                {
+                    config.Host(new Uri(Environment.GetEnvironmentVariable("RABBIT_MQ")), host =>
+                    {
+                        host.Username("user");
+                        host.Password("bitnami");
+                    });
+                    config.ReceiveEndpoint("UpdateTitle", configuaration =>
+                    {
+                        configuaration.ConfigureConsumer<UpdateConsumer>(context);
+                    });                    
+                });                
+
+                x.SetKebabCaseEndpointNameFormatter();
+
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
