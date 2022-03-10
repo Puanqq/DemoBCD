@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Demo.EntityFramework.Entities;
 using Demo.UnitOfWork.interfaces;
+using Demo.Service.Interfaces;
 
 namespace Demo.Service.Business.Managers
 {
-    public class UserOrganizationManager
+    public class UserOrganizationManager : IUserOrganizationManager
     {
         private readonly UserManager<User> _userManager;
         private readonly IRepository<UserOrganization, Guid> _userOrganizationRepository;

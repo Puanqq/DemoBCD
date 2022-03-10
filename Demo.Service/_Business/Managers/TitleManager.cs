@@ -10,10 +10,11 @@ using Demo.EntityFramework.Entities;
 using Demo.UnitOfWork.interfaces;
 using MassTransit;
 using Demo.Service.Dtos.Message;
+using Demo.Service.Interfaces;
 
 namespace Demo.Service.Business.Managers
 {
-    public class TitleManager
+    public class TitleManager : ITitleManager
     {
         private readonly IRepository<Title, Guid> _titleRepository;
         private readonly IRepository<Organization, Guid> _organizationRepository;
@@ -30,7 +31,7 @@ namespace Demo.Service.Business.Managers
             _publishEndpoint = publishEndpoint;
         }
 
-        public async Task<ActionResult> UpdateTitleOrganization(Title input)
+        public async Task<ActionResult> UpdateTitleOrganizationAsync(Title input)
         {
             await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
             {
@@ -41,7 +42,7 @@ namespace Demo.Service.Business.Managers
             return null;
         }
 
-        public async Task<ActionResult> DeleteTitleOrganization(Guid id)
+        public async Task<ActionResult> DeleteTitleOrganizationAsync(Guid id)
         {
             await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
             {

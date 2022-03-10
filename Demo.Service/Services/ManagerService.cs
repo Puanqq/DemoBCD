@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Demo.Service.Interfaces;
 
 namespace Demo.Service.Services
 {
@@ -18,11 +19,11 @@ namespace Demo.Service.Services
         {
             services.AddTransient<ExceptionHandlerMiddleware>();
 
-            services.AddTransient<TokenManager>(); 
-            services.AddTransient<TitleManager>(); 
-            services.AddTransient<RegiterManager>(); 
-            services.AddTransient<OrganizationManager>(); 
-            services.AddTransient<UserOrganizationManager>(); 
+            services.AddTransient<ITokenManager, TokenManager>(); 
+            services.AddTransient<ITitleManager, TitleManager>(); 
+            services.AddTransient<IRegiterManager, RegiterManager>(); 
+            services.AddTransient<IOrganizationManager, OrganizationManager>(); 
+            services.AddTransient<IUserOrganizationManager, UserOrganizationManager>(); 
 
             services.AddTransient<IRepository<Organization, Guid>, Repository<Organization, Guid>>(); 
             services.AddTransient<IRepository<UserOrganization, Guid>, Repository<UserOrganization, Guid>>(); 

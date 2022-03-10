@@ -1,6 +1,7 @@
 ﻿using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
 using Demo.Service.Dtos;
+using Demo.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Demo.Service.Business.Managers
 {
-    public class TokenManager
+    public class TokenManager : ITokenManager
     {
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
