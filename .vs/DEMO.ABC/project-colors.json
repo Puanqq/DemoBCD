@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d780f7cd-04c3-4605-adc9-34d5d847cbcd": {
+      "ProjectGuid": "d780f7cd-04c3-4605-adc9-34d5d847cbcd",
+      "DisplayName": "Demo.Service",
+      "ColorIndex": 0
+    },
+    "91a8a655-5626-4517-b835-7d1f44ffcb12": {
+      "ProjectGuid": "91a8a655-5626-4517-b835-7d1f44ffcb12",
+      "DisplayName": "Demo.EntityFramework",
+      "ColorIndex": 1
+    },
+    "c7b0f0f8-6ecb-4d78-9362-be556cd53bba": {
+      "ProjectGuid": "c7b0f0f8-6ecb-4d78-9362-be556cd53bba",
+      "DisplayName": "Demo.UnitOfWork",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
