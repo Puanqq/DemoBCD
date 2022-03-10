@@ -4,6 +4,7 @@ using Demo.Service.Base;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Filters;
+using Demo.Service.Interfaces;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,9 @@ namespace Demo.Service.Business.Controllers
     [Authorize]
     public class TitleController : BaseCrudAsyncController<Title, TitleInputDto, TitleOutputDto, Guid>
     {
-        private readonly TitleManager _titleManager;
-        public TitleController(IRepository<Title, Guid> repository, IMapper mapper, TitleManager titleManager) : base(repository, mapper)
+        private readonly ITitleManager _titleManager;
+
+        public TitleController(IRepository<Title, Guid> repository, IMapper mapper, ITitleManager titleManager) : base(repository, mapper)
         {
             _titleManager = titleManager;
         }
@@ -35,7 +37,7 @@ namespace Demo.Service.Business.Controllers
         [NotAllowSpecialCharacters("CodeValue")]
         public override Task<ActionResult> UpdateAsync([FromBody] TitleInputDto input)
         {
-            _titleManager.UpdateTitleOrganization(input.JsonMapTo<Title>()).Wait();
+            _titleManager.UpdateTitleOrganizationAsync(input.JsonMapTo<Title>()).Wait();
             return base.UpdateAsync(input);
         }
 
@@ -43,7 +45,7 @@ namespace Demo.Service.Business.Controllers
         {
             var result = base.DeleteAsync(id);
 
-            _titleManager.DeleteTitleOrganization(id).Wait();
+            _titleManager.DeleteTitleOrganizationAsync(id).Wait();
 
             return result;
         }

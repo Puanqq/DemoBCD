@@ -3,6 +3,7 @@ using Demo.Service.Base;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Exceptions;
+using Demo.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +19,14 @@ namespace Demo.Service.Business.Controllers
     [Route("api/[controller]/[action]")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly TokenManager _tokenManager;
+        private readonly ITokenManager _tokenManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RegiterManager _regiterManager;
+        private readonly IRegiterManager _regiterManager;
 
         public AuthenticationController(
             SignInManager<User> signInManager,
-            RegiterManager regiterManager,
-            TokenManager tokenManager
+            IRegiterManager regiterManager,
+            ITokenManager tokenManager
         )
         {
             _tokenManager = tokenManager;

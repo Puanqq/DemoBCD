@@ -3,6 +3,7 @@ using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
+using Demo.Service.Interfaces;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,13 +21,13 @@ namespace Demo.Service.Business.Controllers
     [Authorize]
     public class UserOrganizationController : BaseCrudAsyncController<UserOrganization, UserOrganizationInputDto, UserOrganizationOutputDto, Guid>
     {
-        private readonly UserOrganizationManager _userOrganizationManager;
+        private readonly IUserOrganizationManager _userOrganizationManager;
         private readonly IRepository<UserOrganization, Guid> _repository;
 
         public UserOrganizationController(
             IRepository<UserOrganization, Guid> repository,
             IMapper mapper,
-            UserOrganizationManager userOrganizationManager) : base(repository, mapper)
+            IUserOrganizationManager userOrganizationManager) : base(repository, mapper)
         {
             _userOrganizationManager = userOrganizationManager;
             _repository = repository;

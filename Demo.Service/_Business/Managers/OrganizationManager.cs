@@ -4,10 +4,11 @@ using System;
 using System.Threading.Tasks;
 using Demo.EntityFramework.Entities;
 using Demo.UnitOfWork.interfaces;
+using Demo.Service.Interfaces;
 
 namespace Demo.Service.Business.Managers
 {
-    public class OrganizationManager
+    public class OrganizationManager : IOrganizationManager
     {
         private readonly IRepository<Organization, Guid> _organizationRepository;
 

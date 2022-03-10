@@ -4,6 +4,7 @@ using Demo.Service.Base;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Filters;
+using Demo.Service.Interfaces;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +19,12 @@ namespace Demo.Service.Business.Controllers
     [Authorize]
     public class OrganizationController : BaseCrudAsyncController<Organization, OrganizationInputDto, OrganizationOutputDto, Guid>
     {
-        private readonly OrganizationManager _organizationManager;
+        private readonly IOrganizationManager _organizationManager;
 
         public OrganizationController(
             IRepository<Organization, Guid> repository,
             IMapper mapper,
-            OrganizationManager organizationManager) : base(repository, mapper)
+            IOrganizationManager organizationManager) : base(repository, mapper)
         {
             _organizationManager = organizationManager;
         }

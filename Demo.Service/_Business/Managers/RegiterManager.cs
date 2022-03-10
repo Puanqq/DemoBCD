@@ -1,13 +1,14 @@
 ﻿using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
 using Demo.Service.Dtos;
+using Demo.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace Demo.Service.Business.Managers
 {
-    public class RegiterManager
+    public class RegiterManager : IRegiterManager
     {
         private readonly UserManager<User> _userManager;
         private readonly ILogger _logger;
