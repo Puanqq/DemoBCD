@@ -77,7 +77,7 @@ namespace Demo.Service
                 x.AddConsumer<UpdateConsumer>();                
                 x.UsingRabbitMq((context, config) =>
                 {
-                    config.Host(new Uri(Environment.GetEnvironmentVariable("RABBIT_MQ")), host =>
+                    config.Host(new Uri(Environment.GetEnvironmentVariable("RABBIT_MQ")), host =>                    
                     {
                         host.Username("user");
                         host.Password("bitnami");
@@ -91,6 +91,8 @@ namespace Demo.Service
                 x.SetKebabCaseEndpointNameFormatter();
 
             }));
+
+            services.AddMassTransitHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
