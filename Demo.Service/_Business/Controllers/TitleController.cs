@@ -38,5 +38,14 @@ namespace Demo.Service.Business.Controllers
             _titleManager.UpdateTitleOrganization(input.JsonMapTo<Title>()).Wait();
             return base.UpdateAsync(input);
         }
+
+        public override Task<ActionResult> DeleteAsync(Guid id)
+        {
+            var result = base.DeleteAsync(id);
+
+            _titleManager.DeleteTitleOrganization(id).Wait();
+
+            return result;
+        }
     }
 }

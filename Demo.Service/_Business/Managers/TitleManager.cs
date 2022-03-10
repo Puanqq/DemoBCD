@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Demo.EntityFramework.Entities;
 using Demo.UnitOfWork.interfaces;
 using MassTransit;
-using Demo.Service._Dtos.Message;
+using Demo.Service.Dtos.Message;
 
 namespace Demo.Service.Business.Managers
 {
@@ -43,12 +43,11 @@ namespace Demo.Service.Business.Managers
 
         public async Task<ActionResult> DeleteTitleOrganization(Guid id)
         {
-            var title = await _titleRepository.GetAsync(id);
             await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
             {
                 CorrelationId = Guid.NewGuid(),
                 IsUpdate = false,
-                Title = title
+                Title = new Title() { Id = id }
             });
 
             return null;

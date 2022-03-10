@@ -1,4 +1,5 @@
 ﻿using Demo.EntityFramework.Entities;
+using Demo.Service.Business.Consumers;
 using Demo.Service.Base;
 using Demo.Service.Business.Managers;
 using Demo.Service.Middlewares;
@@ -18,6 +19,7 @@ namespace Demo.Service.Services
             services.AddTransient<ExceptionHandlerMiddleware>();
 
             services.AddTransient<TokenManager>(); 
+            services.AddTransient<TitleManager>(); 
             services.AddTransient<RegiterManager>(); 
             services.AddTransient<OrganizationManager>(); 
             services.AddTransient<UserOrganizationManager>(); 
