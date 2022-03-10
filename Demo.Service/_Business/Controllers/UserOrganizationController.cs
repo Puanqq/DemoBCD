@@ -1,4 +1,5 @@
-﻿using Demo.EntityFramework.Entities;
+﻿using AutoMapper;
+using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
@@ -24,7 +25,8 @@ namespace Demo.Service.Business.Controllers
 
         public UserOrganizationController(
             IRepository<UserOrganization, Guid> repository,
-            UserOrganizationManager userOrganizationManager) : base(repository)
+            IMapper mapper,
+            UserOrganizationManager userOrganizationManager) : base(repository, mapper)
         {
             _userOrganizationManager = userOrganizationManager;
             _repository = repository;

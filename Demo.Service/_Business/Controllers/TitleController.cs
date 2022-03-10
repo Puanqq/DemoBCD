@@ -1,4 +1,5 @@
-﻿using Demo.EntityFramework.Entities;
+﻿using AutoMapper;
+using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
 using Demo.Service.Dtos;
 using Demo.Service.Filters;
@@ -18,7 +19,7 @@ namespace Demo.Service.Business.Controllers
     [Authorize]
     public class TitleController : BaseCrudAsyncController<Title, TitleInputDto, TitleOutputDto, Guid>
     {
-        public TitleController(IRepository<Title, Guid> repository) : base(repository)
+        public TitleController(IRepository<Title, Guid> repository, IMapper mapper) : base(repository, mapper)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using Demo.EntityFramework.Entities;
+﻿using AutoMapper;
+using Demo.EntityFramework.Entities;
 using Demo.Service.Dtos;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Http;
@@ -20,11 +21,14 @@ namespace Demo.Service.Base
         where TPrimaryKey : struct
     {
         private readonly IRepository<TEntity, TPrimaryKey> _repository;
-        
+        private readonly IMapper _mapper;
+
         public BaseCrudAsyncController(
-            IRepository<TEntity, TPrimaryKey> repository
+            IRepository<TEntity, TPrimaryKey> repository,
+            IMapper mapper
         )
         {
+            _mapper = mapper;
             _repository = repository;
         }
 
@@ -72,7 +76,9 @@ namespace Demo.Service.Base
                 return NotFound($"Can't find Id { input }");
             }
 
-            await _repository.UpdateAsync(input.JsonMapTo<TEntity>());
+            entity = _mapper.Map<TEntityInputDto, TEntity>(input, entity);
+
+            await _repository.UpdateAsync(entity);
 
             return NoContent();
         }
