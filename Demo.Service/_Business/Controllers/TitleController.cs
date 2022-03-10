@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
+using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Filters;
 using Demo.UnitOfWork.interfaces;
@@ -19,8 +20,10 @@ namespace Demo.Service.Business.Controllers
     [Authorize]
     public class TitleController : BaseCrudAsyncController<Title, TitleInputDto, TitleOutputDto, Guid>
     {
-        public TitleController(IRepository<Title, Guid> repository, IMapper mapper) : base(repository, mapper)
+        private readonly TitleManager _titleManager;
+        public TitleController(IRepository<Title, Guid> repository, IMapper mapper, TitleManager titleManager) : base(repository, mapper)
         {
+            _titleManager = titleManager;
         }
 
         [NotAllowSpecialCharacters("CodeValue")]
@@ -32,6 +35,7 @@ namespace Demo.Service.Business.Controllers
         [NotAllowSpecialCharacters("CodeValue")]
         public override Task<ActionResult> UpdateAsync([FromBody] TitleInputDto input)
         {
+            _titleManager.UpdateTitleOrganization(input.JsonMapTo<Title>()).Wait();
             return base.UpdateAsync(input);
         }
     }
