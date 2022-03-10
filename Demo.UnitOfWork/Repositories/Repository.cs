@@ -51,7 +51,7 @@ namespace Demo.UnitOfWork.Base
 
         public Task UpdateAsync(TEntity entity)
         {
-            return Task.Run(async () => {
+            return Task.Run(async () => { 
                 _dbSet.Attach(entity);
                 _dbContext.Entry(entity).State = EntityState.Modified;
                 await SaveAsync();

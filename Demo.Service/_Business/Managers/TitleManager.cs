@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Demo.EntityFramework.Entities;
 using Demo.UnitOfWork.interfaces;
+using MassTransit;
+using Demo.Service._Dtos.Message;
 
 namespace Demo.Service.Business.Managers
 {
@@ -15,23 +17,40 @@ namespace Demo.Service.Business.Managers
     {
         private readonly IRepository<Title, Guid> _titleRepository;
         private readonly IRepository<Organization, Guid> _organizationRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
 
         public TitleManager(
             IRepository<Title, Guid> titleRepository,
-            IRepository<Organization, Guid> organizationRepository
+            IRepository<Organization, Guid> organizationRepository,
+            IPublishEndpoint publishEndpoint
         )
         {
             _titleRepository = titleRepository;
             _organizationRepository = organizationRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
-        public Task UpdateTitleOrganization(Title input)
+        public async Task<ActionResult> UpdateTitleOrganization(Title input)
         {
+            await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
+            {
+                CorrelationId = Guid.NewGuid(),
+                IsUpdate = true,
+                Title = input
+            });
             return null;
         }
 
-        public Task DeleteTitleOrganization(Guid id)
+        public async Task<ActionResult> DeleteTitleOrganization(Guid id)
         {
+            var title = await _titleRepository.GetAsync(id);
+            await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
+            {
+                CorrelationId = Guid.NewGuid(),
+                IsUpdate = false,
+                Title = title
+            });
+
             return null;
         }
     }

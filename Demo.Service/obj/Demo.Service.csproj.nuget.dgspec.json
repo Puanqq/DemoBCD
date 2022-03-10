@@ -1,32 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\_LEARN\\_Last\\Demo.Service\\Demo.Service.csproj": {}
+    "C:\\infodation\\DemoBCD\\Demo.Service\\Demo.Service.csproj": {}
   },
   "projects": {
-    "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj": {
+    "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
+        "projectUniqueName": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
         "projectName": "Demo.EntityFramework",
-        "projectPath": "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
-        "packagesPath": "C:\\Users\\HuyenDuc\\.nuget\\packages\\",
-        "outputPath": "D:\\_LEARN\\_Last\\Demo.EntityFramework\\obj\\",
+        "projectPath": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
+        "packagesPath": "D:\\Users\\Quang\\.nuget\\packages\\",
+        "outputPath": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HuyenDuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "D:\\Users\\Quang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -129,44 +124,39 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\_LEARN\\_Last\\Demo.Service\\Demo.Service.csproj": {
+    "C:\\infodation\\DemoBCD\\Demo.Service\\Demo.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_LEARN\\_Last\\Demo.Service\\Demo.Service.csproj",
+        "projectUniqueName": "C:\\infodation\\DemoBCD\\Demo.Service\\Demo.Service.csproj",
         "projectName": "Demo.Service",
-        "projectPath": "D:\\_LEARN\\_Last\\Demo.Service\\Demo.Service.csproj",
-        "packagesPath": "C:\\Users\\HuyenDuc\\.nuget\\packages\\",
-        "outputPath": "D:\\_LEARN\\_Last\\Demo.Service\\obj\\",
+        "projectPath": "C:\\infodation\\DemoBCD\\Demo.Service\\Demo.Service.csproj",
+        "packagesPath": "D:\\Users\\Quang\\.nuget\\packages\\",
+        "outputPath": "C:\\infodation\\DemoBCD\\Demo.Service\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HuyenDuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "D:\\Users\\Quang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj": {
-                "projectPath": "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj"
+              "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj": {
+                "projectPath": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj"
               },
-              "D:\\_LEARN\\_Last\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj": {
-                "projectPath": "D:\\_LEARN\\_Last\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj"
+              "C:\\infodation\\DemoBCD\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj": {
+                "projectPath": "C:\\infodation\\DemoBCD\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj"
               }
             }
           }
@@ -184,6 +174,18 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[11.0.1, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[7.3.1, )"
+            },
+            "MassTransit.AspNetCore": {
+              "target": "Package",
+              "version": "[7.3.1, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[7.3.1, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -268,41 +270,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\_LEARN\\_Last\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj": {
+    "C:\\infodation\\DemoBCD\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_LEARN\\_Last\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj",
+        "projectUniqueName": "C:\\infodation\\DemoBCD\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj",
         "projectName": "Demo.UnitOfWork",
-        "projectPath": "D:\\_LEARN\\_Last\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj",
-        "packagesPath": "C:\\Users\\HuyenDuc\\.nuget\\packages\\",
-        "outputPath": "D:\\_LEARN\\_Last\\Demo.UnitOfWork\\obj\\",
+        "projectPath": "C:\\infodation\\DemoBCD\\Demo.UnitOfWork\\Demo.UnitOfWork.csproj",
+        "packagesPath": "D:\\Users\\Quang\\.nuget\\packages\\",
+        "outputPath": "C:\\infodation\\DemoBCD\\Demo.UnitOfWork\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HuyenDuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "D:\\Users\\Quang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj": {
-                "projectPath": "D:\\_LEARN\\_Last\\Demo.EntityFramework\\Demo.EntityFramework.csproj"
+              "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj": {
+                "projectPath": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj"
               }
             }
           }
@@ -331,7 +328,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
