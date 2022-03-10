@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Demo.Service.Interfaces;
 
 namespace Demo.Service.Business.Consumers
 {
@@ -45,8 +46,9 @@ namespace Demo.Service.Business.Consumers
 
                 org.Titles = listTitle.ConvertToJson();
 
-                await _organizationRepository.UpdateAsync(org);
             }
+
+            await _organizationRepository.UpdateListAsync(listOrganizations);
         }
     }
 }

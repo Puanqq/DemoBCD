@@ -22,29 +22,32 @@ namespace Demo.Service.Business.Controllers
         private readonly ITokenManager _tokenManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IRegiterManager _regiterManager;
+        private readonly IUserResolverService _userResolverService;
 
         public AuthenticationController(
             SignInManager<User> signInManager,
             IRegiterManager regiterManager,
-            ITokenManager tokenManager
+            ITokenManager tokenManager,
+            IUserResolverService userResolverService
         )
         {
             _tokenManager = tokenManager;
             _signInManager = signInManager;
             _regiterManager = regiterManager;
+            _userResolverService = userResolverService;
         }
 
         [HttpGet]
         [Authorize]
         public Task<UserOutputDto> GetCurrentUserAsync()
         {
-            var userId = User.Claims.ToList().Find(f => f.Type == ClaimTypes.NameIdentifier).Value;
+            var userId = _userResolverService.GetUserId();
 
-            return _tokenManager.GetUserByIdAsync(userId);
+            return _tokenManager.GetUserByIdAsync(userId.ToString());
         }
 
         [HttpPost]
-        public async Task<ActionResult<AuthenticateOutputDto>> LoginAsync([FromBody] AuthenticateDto input)
+        public async Task<AuthenticateOutputDto> LoginAsync([FromBody] AuthenticateDto input)
         {
             var result = await _signInManager.PasswordSignInAsync(input.UserName, input.Password, false, lockoutOnFailure: true);
 
@@ -62,7 +65,7 @@ namespace Demo.Service.Business.Controllers
 
             Log.Information("User logged in.");
 
-            return Ok(output);
+            return output;
         }
 
         [HttpPost]

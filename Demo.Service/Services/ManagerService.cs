@@ -19,6 +19,7 @@ namespace Demo.Service.Services
         {
             services.AddTransient<ExceptionHandlerMiddleware>();
 
+            services.AddTransient<IUserResolverService, UserResolverService>();
             services.AddTransient<ITokenManager, TokenManager>(); 
             services.AddTransient<ITitleManager, TitleManager>(); 
             services.AddTransient<IRegiterManager, RegiterManager>(); 
