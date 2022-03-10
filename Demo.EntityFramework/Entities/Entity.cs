@@ -10,9 +10,13 @@ namespace Demo.EntityFramework.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TPrimaryKey Id { get; set; }
 
-        //public DateTime CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
 
-        //public DateTime? ModifiedTime { get; set; }
+        public DateTime? ModifiedTime { get; set; }
+
+        public Guid? CreatedUser { get; set; }
+
+        public Guid? ModifiedUser { get; set; }
     }
 
     public interface IEntity<TPrimaryKey> where TPrimaryKey : struct
@@ -21,8 +25,8 @@ namespace Demo.EntityFramework.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TPrimaryKey Id { get; set; }
 
-        //public DateTime CreatedTime { get; set; }
+        public Guid? CreatedUser { get; set; }
 
-        //public DateTime? ModifiedTime { get; set; }
+        public Guid? ModifiedUser { get; set; }
     }
 }

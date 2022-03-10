@@ -17,6 +17,8 @@ namespace Demo.UnitOfWork.interfaces
 
         Task UpdateAsync(TEntity entity);
 
+        Task UpdateListAsync(ICollection<TEntity> entities);
+
         Task DeleteAsync(TPrimaryKey entity);
 
         Task SaveAsync();

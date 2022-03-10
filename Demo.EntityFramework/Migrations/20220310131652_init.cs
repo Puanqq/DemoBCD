@@ -59,7 +59,11 @@ namespace Demo.EntityFramework.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CodeValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Titles = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Titles = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ModifiedUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,7 +77,11 @@ namespace Demo.EntityFramework.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CodeValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ModifiedUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -194,7 +202,11 @@ namespace Demo.EntityFramework.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrganizationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TitleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ModifiedUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
