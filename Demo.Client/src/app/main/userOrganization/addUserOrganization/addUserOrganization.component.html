@@ -1,4 +1,4 @@
-﻿
+
 <form *ngIf="form" autocomplete="off" [formGroup]="form" novalidate >
 
   <div style="background: #25aed7; color: white; font-size: 18px; padding: 5px 10px">
@@ -14,8 +14,8 @@
         <span class="font-size-16 display-block margin-b-5" style="color: blue;">Chọn nhân viên</span>
 
         <div *ngFor="let item of listUser; let index = index">
-          <input (change)="selectUser(item.id, index)" [checked]="item._isCheck" type="radio" class="form-check-input margin-r-7">
-          <span class="font-size-15">{{ item.userName }}</span>
+            <input (change)="selectUser(item.id, index)" [checked]="item._isCheck" type="radio" class="form-check-input margin-r-7">
+            <span class="font-size-15">{{ item.surname }} {{ item.name }}</span>
         </div>
   
       </div>

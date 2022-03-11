@@ -19,7 +19,7 @@ namespace Demo.Service.Business.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
-    public class TitleController : BaseCrudAsyncController<Title, TitleInputDto, TitleOutputDto, Guid>
+    public class TitleController : BaseCrudAsyncController<Title, TitleInputDto, TitleOutputDto, Guid, PaginationInputDto>
     {
         private readonly ITitleManager _titleManager;
 

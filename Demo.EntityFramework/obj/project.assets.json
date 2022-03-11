@@ -8678,26 +8678,33 @@
     ]
   },
   "packageFolders": {
-    "D:\\Users\\Quang\\.nuget\\packages\\": {}
+    "C:\\Users\\HuyenDuc\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
+      "projectUniqueName": "D:\\_LEARN\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
       "projectName": "Demo.EntityFramework",
-      "projectPath": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
-      "packagesPath": "D:\\Users\\Quang\\.nuget\\packages\\",
-      "outputPath": "C:\\infodation\\DemoBCD\\Demo.EntityFramework\\obj\\",
+      "projectPath": "D:\\_LEARN\\DemoBCD\\Demo.EntityFramework\\Demo.EntityFramework.csproj",
+      "packagesPath": "C:\\Users\\HuyenDuc\\.nuget\\packages\\",
+      "outputPath": "D:\\_LEARN\\DemoBCD\\Demo.EntityFramework\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "D:\\Users\\Quang\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "D:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\HuyenDuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "D:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8800,7 +8807,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

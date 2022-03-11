@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { OrganizationServiceProxy } from '@shared/service-proxies/service-proxies';
+import { OrganizationServiceProxy, PaginationInputDto } from '@shared/service-proxies/service-proxies';
 import * as _ from 'lodash';
 import { BsModalService } from 'ngx-bootstrap';
 import { CrudOrganizationTitleComponent } from './crud/crud.component';
@@ -14,7 +14,7 @@ import { CrudOrganizationTitleComponent } from './crud/crud.component';
 
 export class OrganizationTitleComponent implements OnInit {
 
-	list:any[] = [];
+	pagination = null;
 
 	constructor(
 		private _organizationServiceProxy:OrganizationServiceProxy,
@@ -24,13 +24,26 @@ export class OrganizationTitleComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getList();
+		this.resetPagination();
+		this.getAll();
 	}
 
-	private getList(){
-		this._organizationServiceProxy.getList().subscribe(res => {
-			this.list = res;
-			_.each(this.list, item => {
+	private resetPagination(){
+		this.pagination = {
+			items: [],
+			totalCount: 0,
+			skipCount : 0,
+			maxCountResult: 2
+		};
+	
+	}
+
+	private getAll(){
+		let input = PaginationInputDto.fromJS(this.pagination);
+		this._organizationServiceProxy.getAll(input).subscribe(res => {
+			this.pagination.items = res.items;
+			this.pagination.totalCount = res.totalCount;
+			_.each(this.pagination.items, item => {
 				item.listTitle = JSON.parse(item.titles);
 			})
 		})
@@ -49,7 +62,7 @@ export class OrganizationTitleComponent implements OnInit {
 		});
 	
 		modal.content.onSave.subscribe(res => {
-			this.getList();
+			this.getAll();
 		});
 	}
 }

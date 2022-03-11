@@ -1,0 +1,28 @@
+﻿<nav *ngIf="pagination && pagination.items && pagination.items.length > 0" class="padding-tb-7">
+
+    <ul class="pagination margin-0">
+
+        <li (click)="selectPage(pagination.skipCount - pagination.maxCountResult)" class="page-item pointer">
+            <a class="page-link">Previous</a>
+        </li>
+
+        <ng-container *ngFor="let item of getListPageination(); let index = index">
+
+            <li 
+                [ngClass]="{ 'active': item.id == pagination.skipCount }" 
+                (click)="selectPage(item.id)"
+                class="page-item pointer">
+                <a class="page-link"> 
+                    {{ item.name }}
+                </a>
+            </li>
+
+        </ng-container>
+
+        <li (click)="selectPage(pagination.skipCount + pagination.maxCountResult)" class="page-item pointer">
+            <a class="page-link">Next</a>
+        </li>
+
+    </ul>
+
+</nav>

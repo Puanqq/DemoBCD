@@ -17,7 +17,7 @@ namespace Demo.Service.Business.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
-    public class OrganizationController : BaseCrudAsyncController<Organization, OrganizationInputDto, OrganizationOutputDto, Guid>
+    public class OrganizationController : BaseCrudAsyncController<Organization, OrganizationInputDto, OrganizationOutputDto, Guid, PaginationInputDto>
     {
         private readonly IOrganizationManager _organizationManager;
 

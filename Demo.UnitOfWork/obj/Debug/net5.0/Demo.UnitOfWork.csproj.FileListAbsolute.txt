@@ -42,3 +42,17 @@ D:\_LEARN\_Last\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.csproj.CopyComp
 D:\_LEARN\_Last\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.dll
 D:\_LEARN\_Last\Demo.UnitOfWork\obj\Debug\net5.0\ref\Demo.UnitOfWork.dll
 D:\_LEARN\_Last\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.pdb
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\bin\Debug\net5.0\Demo.UnitOfWork.deps.json
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\bin\Debug\net5.0\Demo.UnitOfWork.dll
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\bin\Debug\net5.0\ref\Demo.UnitOfWork.dll
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\bin\Debug\net5.0\Demo.UnitOfWork.pdb
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\bin\Debug\net5.0\Demo.EntityFramework.dll
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\bin\Debug\net5.0\Demo.EntityFramework.pdb
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.csproj.AssemblyReference.cache
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.GeneratedMSBuildEditorConfig.editorconfig
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.AssemblyInfoInputs.cache
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.AssemblyInfo.cs
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.csproj.CoreCompileInputs.cache
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.dll
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\ref\Demo.UnitOfWork.dll
+D:\_LEARN\DemoBCD\Demo.UnitOfWork\obj\Debug\net5.0\Demo.UnitOfWork.pdb

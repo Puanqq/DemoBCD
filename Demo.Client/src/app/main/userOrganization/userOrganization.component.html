@@ -4,17 +4,22 @@
     <h4 class="display-inline margin-t-0" style="font-weight: 600;">Sơ đồ tổ chức</h4>
   </div>
 
+  <div class="full-width display-block">
+    <app-pagination [pagination]="pagination" (onGetAll)="getAll()" class="pull-right"></app-pagination>
+  </div>
+
   <table class="table table-bordered">
+
       <thead>
         <tr>
-          <th width="100">Mã phòng ban</th>
+          <th width="150">Mã phòng ban</th>
           <th colspan="3">Tên phòng ban</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
 
-        <ng-container *ngFor="let item of list; let index = index">
+        <ng-container *ngFor="let item of pagination.items; let index = index">
 
           <tr style="background: #ebf0f3;">
             <td (click)="item._isShow = !item._isShow; getUserOrganization(index)">

@@ -3,36 +3,39 @@
   <div>
     <h4 class="display-inline margin-t-0" style="font-weight: 600;">Danh sách chức danh</h4>
   </div>
-  
-    <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th width="200">Mã phòng ban</th>
-            <th>Tên phòng ban</th>
-            <th>Chức danh</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of list">
-            <td>{{ item.codeValue }}</td>
-            <td>{{ item.name }}</td>
-            <td>
-              <ng-contaier *ngFor="let title of item.listTitle">
-                <span 
-                  style="border: 1px dotted #ebc332;
+
+  <div class="full-width display-block">
+    <app-pagination [pagination]="pagination" (onGetAll)="getAll()" class="pull-right"></app-pagination>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th width="200">Mã phòng ban</th>
+        <th>Tên phòng ban</th>
+        <th>Chức danh</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pagination.items">
+        <td>{{ item.codeValue }}</td>
+        <td>{{ item.name }}</td>
+        <td>
+          <ng-contaier *ngFor="let title of item.listTitle">
+            <span style="border: 1px dotted #ebc332;
                   background: #ebe3c5;
                   padding: 3px 6px 3px 6px;
                   margin-right: 5px;">
-                  {{ title.name }}
-                </span>
-              </ng-contaier>
-            </td>
-            <td width="20" class="text-right">
-                <button (click)="openDialog(item.id)" type="button" class="btn btn-primary btn-square btn-sm padding-tb-2" >
-                  <i class="fa fa-edit"></i>
-                  Chỉnh sửa</button>
-            </td>
-          </tr>
-        </tbody>
-    </table>
+              {{ title.name }}
+            </span>
+          </ng-contaier>
+        </td>
+        <td width="20" class="text-right">
+          <button (click)="openDialog(item.id)" type="button" class="btn btn-primary btn-square btn-sm padding-tb-2">
+            <i class="fa fa-edit"></i>
+            Chỉnh sửa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
