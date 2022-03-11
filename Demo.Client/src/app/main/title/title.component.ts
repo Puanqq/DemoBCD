@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AppConsts } from '@shared/AppConsts';
-import { TitleServiceProxy } from '@shared/service-proxies/service-proxies';
+import { PaginationInputDto, TitleServiceProxy } from '@shared/service-proxies/service-proxies';
 import { BsModalService } from 'ngx-bootstrap';
 import { CrudTitleComponent } from './crud/crud.component';
 
@@ -14,7 +14,7 @@ import { CrudTitleComponent } from './crud/crud.component';
 })
 export class TitleComponent implements OnInit {
 
-	list = [];
+	pagination = null;
 
 	constructor(
 		private _titleServiceProxy:TitleServiceProxy,
@@ -24,12 +24,25 @@ export class TitleComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getList();
+		this.resetPagination();
+		this.getAll();
 	}
 
-	private getList(){
-		this._titleServiceProxy.getList().subscribe(res => {
-			this.list = res;
+	private resetPagination(){
+		this.pagination = {
+			items: [],
+			totalCount: 0,
+			skipCount : 0,
+			maxCountResult: 2
+		};
+	
+	}
+
+	private getAll(){
+		let input = PaginationInputDto.fromJS(this.pagination);
+		this._titleServiceProxy.getAll(input).subscribe(res => {
+			this.pagination.items = res.items;
+			this.pagination.totalCount = res.totalCount;
 		})
 	}
 
@@ -46,7 +59,12 @@ export class TitleComponent implements OnInit {
 		});
 	
 		modal.content.onSave.subscribe(res => {
-			this.getList();
+			this.getAll();
+		});
+
+		modal.content.onDelete.subscribe(res => {
+			this.resetPagination();
+			this.getAll();
 		});
 	}
 }

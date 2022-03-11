@@ -4,6 +4,7 @@ using Demo.Service.Dtos;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,11 @@ namespace Demo.Service.Base
    
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class BaseCrudAsyncController<TEntity, TEntityInputDto, TEntityOutputDto, TPrimaryKey> : Controller 
+    public class BaseCrudAsyncController<TEntity, TEntityInputDto, TEntityOutputDto, TPrimaryKey, TPaginationInputDto> : Controller 
         where TEntity : Entity<TPrimaryKey>
         where TEntityInputDto : EntityDto<TPrimaryKey>
         where TEntityOutputDto : EntityDto<TPrimaryKey>
+        where TPaginationInputDto : PaginationInputDto
         where TPrimaryKey : struct
     {
         private readonly IRepository<TEntity, TPrimaryKey> _repository;
@@ -45,6 +47,21 @@ namespace Demo.Service.Base
             }
 
             return Ok(entity.JsonMapTo<TEntityOutputDto>());
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public virtual async Task<ActionResult<PaginationOutputDto<TEntityOutputDto>>> GetAllAsync([FromBody] TPaginationInputDto input)
+        {
+            var query = await _repository.Query.Skip(input.SkipCount).Take(input.MaxCountResult).ToListAsync();
+
+            var result = new PaginationOutputDto<TEntityOutputDto>()
+            {
+                Items = query.JsonMapTo<List<TEntityOutputDto>>(),
+                TotalCount = await _repository.Query.CountAsync()
+            };
+
+            return Ok(result);
         }
 
         [HttpGet]

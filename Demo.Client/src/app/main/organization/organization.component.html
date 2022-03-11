@@ -1,29 +1,34 @@
 ﻿<div class="padding-tb-20 padding-lr-15">
 
-  <div>
+  <div class="clearfix">
     <h4 class="display-inline margin-0" style="font-weight: 600;">Danh sách phòng ban</h4>
     <button (click)="openDialog()" type="button" class="btn btn-success padding-tb-2 pull-right"> 
       <i class="fa fa-plus"></i> Thêm</button>
   </div>
 
-    <table class="table table-bordered margin-t-15">
-        <thead>
-          <tr>
-            <th width="200">Mã phòng ban</th>
-            <th>Tên phòng ban</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of list">
-            <td>{{ item.codeValue }}</td>
-            <td>{{ item.name }}</td>
-            <td width="20" class="text-right">
-                <button (click)="openDialog(item.id)" type="button" class="btn btn-primary btn-square btn-sm padding-tb-2" >
-                  <i class="fa fa-edit"></i> Chỉnh sửa
-                </button>
-            </td>
-          </tr>
-        </tbody>
-    </table>
+  <div class="full-width display-block">
+    <app-pagination [pagination]="pagination" (onGetAll)="getAll()" class="pull-right"></app-pagination>
+  </div>
+
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th width="200">Mã phòng ban</th>
+          <th>Tên phòng ban</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pagination?.items">
+          <td>{{ item.codeValue }}</td>
+          <td>{{ item.name }}</td>
+          <td width="20" class="text-right">
+              <button (click)="openDialog(item.id)" type="button" class="btn btn-primary btn-square btn-sm padding-tb-2" >
+                <i class="fa fa-edit"></i> Chỉnh sửa
+              </button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+
 </div>

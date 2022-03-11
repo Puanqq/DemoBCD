@@ -19,7 +19,7 @@ namespace Demo.Service.Business.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
-    public class UserOrganizationController : BaseCrudAsyncController<UserOrganization, UserOrganizationInputDto, UserOrganizationOutputDto, Guid>
+    public class UserOrganizationController : BaseCrudAsyncController<UserOrganization, UserOrganizationInputDto, UserOrganizationOutputDto, Guid, PaginationInputDto>
     {
         private readonly IUserOrganizationManager _userOrganizationManager;
         private readonly IRepository<UserOrganization, Guid> _repository;

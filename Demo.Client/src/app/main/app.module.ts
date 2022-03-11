@@ -24,6 +24,7 @@ import { OrganizationTitleComponent } from './organization-title/organization-ti
 import { AddUserOrganizationComponent } from './userOrganization/addUserOrganization/addUserOrganization.component';
 import { UserOrganizationComponent } from './userOrganization/userOrganization.component';
 import { UpdateTitleUserOrganizationComponent } from './userOrganization/updateTitleUserOrganization/updateTitleUserOrganization.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { UpdateTitleUserOrganizationComponent } from './userOrganization/updateT
         OrganizationTitleComponent,
         UserOrganizationComponent,
         AddUserOrganizationComponent,
-        UpdateTitleUserOrganizationComponent
+        UpdateTitleUserOrganizationComponent,
+        PaginationComponent
     ],
     imports: [
         CommonModule,

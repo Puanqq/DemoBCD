@@ -79,7 +79,7 @@ export class CrudTitleComponent implements OnInit {
 	delete(){
 		this._titleServiceProxy.delete(this.form.get('id').value).subscribe(res => {
 			toastr.success("Xóa thành công");
-			this.onSave.next();
+			this.onDelete.next();
 			this._modalRef.hide();
 		})
 	}

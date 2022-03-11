@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AppConsts } from '@shared/AppConsts';
-import { OrganizationServiceProxy, UserOrganizationServiceProxy } from '@shared/service-proxies/service-proxies';
+import { OrganizationServiceProxy, PaginationInputDto, UserOrganizationServiceProxy } from '@shared/service-proxies/service-proxies';
 import * as _ from 'lodash';
 import { BsModalService } from 'ngx-bootstrap';
 import { AddUserOrganizationComponent } from './addUserOrganization/addUserOrganization.component';
@@ -16,18 +16,19 @@ import { UpdateTitleUserOrganizationComponent } from './updateTitleUserOrganizat
 })
 export class UserOrganizationComponent implements OnInit {
 
-	list = [];
+	pagination = null;
 
 	constructor(
 		private _organizationServiceProxy:OrganizationServiceProxy,
 		private _userOrganizationServiceProxy:UserOrganizationServiceProxy,
-		private readonly _md: BsModalService,
+		private _md: BsModalService,
 		private _fb: FormBuilder,
 	) {
 	}
 
 	ngOnInit() {
-		this.getList();
+		this.resetPagination();
+		this.getAll();
 	}
 
 	addUserOrganization(organization){
@@ -41,7 +42,7 @@ export class UserOrganizationComponent implements OnInit {
 		});
 	
 		modal.content.onSave.subscribe(res => {
-			this.getList();
+			this.getAll();
 		});
 	}
 
@@ -58,23 +59,35 @@ export class UserOrganizationComponent implements OnInit {
 		});
 	
 		modal.content.onSave.subscribe(res => {
-			this.getList();
+			this.getAll();
 		});
 	}
 
 
 	getUserOrganization(index){
 
-		if(this.list[index].userOrganizations) return;
+		if(this.pagination.items[index].userOrganizations) return;
 
-		this._userOrganizationServiceProxy.getListUserOrganizationByOrganizationId(this.list[index].id).subscribe(res => {
-			this.list[index].userOrganizations = res;
+		this._userOrganizationServiceProxy.getListUserOrganizationByOrganizationId(this.pagination.items[index].id).subscribe(res => {
+			this.pagination.items[index].userOrganizations = res;
 		})
 	}
 
-	private getList(){
-		this._organizationServiceProxy.getList().subscribe(res => {
-			this.list = res;
+	private resetPagination(){
+		this.pagination = {
+			items: [],
+			totalCount: 0,
+			skipCount : 0,
+			maxCountResult: 2
+		};
+	
+	}
+
+	private getAll(){
+		let input = PaginationInputDto.fromJS(this.pagination);
+		this._organizationServiceProxy.getAll(input).subscribe(res => {
+			this.pagination.items = res.items;
+			this.pagination.totalCount = res.totalCount;
 		})
 	}
 }
