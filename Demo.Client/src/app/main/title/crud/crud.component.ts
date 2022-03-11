@@ -62,14 +62,14 @@ export class CrudTitleComponent implements OnInit {
 
 		if(this.isNew){
 			this._titleServiceProxy.create(input).subscribe(res => {
-				toastr.success("Lưu thành công");
+				toastr.success("Save successfully");
 				this.onSave.next();
 				this._modalRef.hide();
 			});
 		}
 		else {
 			this._titleServiceProxy.update(input).subscribe(res => {
-				toastr.success("Lưu thành công");
+				toastr.success("Save successfully");
 				this.onSave.next();
 				this._modalRef.hide();
 			});
@@ -78,7 +78,7 @@ export class CrudTitleComponent implements OnInit {
 
 	delete(){
 		this._titleServiceProxy.delete(this.form.get('id').value).subscribe(res => {
-			toastr.success("Xóa thành công");
+			toastr.success("Delete successfully");
 			this.onDelete.next();
 			this._modalRef.hide();
 		})

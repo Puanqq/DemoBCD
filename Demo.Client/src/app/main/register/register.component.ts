@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
 		let input = RegisterUserInputDto.fromJS(this.form.value);
 
 		this._authenticationServiceProxy.register(input).subscribe(res => {
-			toastr.success("Đăng ký thành công");
+			toastr.success("Sign Up Success");
 		}, err => {
 			toastr.error(err);
 		})

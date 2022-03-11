@@ -1,9 +1,9 @@
 ﻿<div class="padding-tb-20 padding-lr-15">
 
   <div class="clearfix">
-    <h4 class="display-inline margin-0" style="font-weight: 600;">Danh sách chức danh</h4>
+    <h4 class="display-inline margin-0" style="font-weight: 600;">List of titles</h4>
     <button (click)="openDialog()" type="button" class="btn btn-success padding-tb-2 pull-right">
-      <i class="fa fa-plus"></i> Thêm</button>
+      <i class="fa fa-plus"></i> Create</button>
   </div>
 
 
@@ -15,8 +15,8 @@
   <table class="table table-bordered margin-t-15">
     <thead>
       <tr>
-        <th width="200">Mã chức danh</th>
-        <th>Tên chức danh</th>
+        <th width="200">Title code</th>
+        <th>Title name</th>
         <th></th>
       </tr>
     </thead>
@@ -26,7 +26,7 @@
         <td>{{ item.name }}</td>
         <td width="20" class="text-right">
           <button (click)="openDialog(item.id)" type="button" class="btn btn-primary btn-square btn-sm padding-tb-2">
-            <i class="fa fa-edit"></i> Chỉnh sửa
+            <i class="fa fa-edit"></i> Edit
           </button>
         </td>
       </tr>

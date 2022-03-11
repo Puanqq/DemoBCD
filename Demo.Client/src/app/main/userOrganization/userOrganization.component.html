@@ -1,7 +1,7 @@
 ﻿<div class="padding-tb-20 padding-lr-15">
 
   <div>
-    <h4 class="display-inline margin-t-0" style="font-weight: 600;">Sơ đồ tổ chức</h4>
+    <h4 class="display-inline margin-t-0" style="font-weight: 600;">Organizational chart</h4>
   </div>
 
   <div class="full-width display-block">
@@ -12,8 +12,8 @@
 
       <thead>
         <tr>
-          <th width="150">Mã phòng ban</th>
-          <th colspan="3">Tên phòng ban</th>
+          <th width="150">Department code</th>
+          <th colspan="3">Department name</th>
           <th></th>
         </tr>
       </thead>
@@ -27,8 +27,8 @@
             </td>
             <td colspan="3">{{ item.name }}</td>
             <td width="20" class="text-right">
-                <button (click)="addUserOrganization(item)" type="button" class="width-85 btn btn-success btn-square btn-sm padding-tb-2" >
-                  <i class="fa fa-plus"></i> Thêm</button>
+                <button (click)="addUserOrganization(item)" type="button" class="btn btn-success btn-square btn-sm padding-tb-2" >
+                  <i class="fa fa-plus"></i> Create</button>
             </td>
           </tr>
 
@@ -36,30 +36,28 @@
 
             <tr style="background: #e3e9d2;">
               <th width="100"></th>
-              <th>Tài khoản</th>
-              <th>Họ và tên</th>
-              <th>Chức danh</th>
+              <th>Username</th>
+              <th>Full name</th>
+              <th>Title</th>
               <th></th>
             </tr>
 
             <tr *ngFor="let userOrganization of item.userOrganizations">
               <td></td>
               <td>{{ userOrganization.user.userName }}</td>
-              <td>{{ userOrganization.user.surname }} {{ userOrganization.user.name }}</td>
+              <td>{{ userOrganization.user.name }} {{ userOrganization.user.surname }}</td>
               <td>{{ userOrganization.title.name }}</td>
               <td width="20" class="text-right">
-                <button (click)="updateTitleUserOrganization(item, userOrganization)" type="button" class="btn btn-primary btn-square btn-sm padding-tb-2" >
-                  <i class="fa fa-edit"></i> Chỉnh sửa</button>
+                <button (click)="updateTitleUserOrganization(item, userOrganization)" type="button" class="width-65 btn btn-primary btn-square btn-sm padding-tb-2" >
+                  <i class="fa fa-edit"></i> Edit</button>
               </td>
             </tr>
 
             <tr *ngIf="!item.userOrganizations || item.userOrganizations.length == 0">
-              <td colspan="5" class="text-center">Chưa có dữ liệu</td>
+              <td colspan="5" class="text-center">Data not available</td>
             </tr>
 
           </ng-container>
-
-       
 
         </ng-container>
   

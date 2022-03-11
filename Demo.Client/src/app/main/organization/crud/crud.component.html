@@ -7,34 +7,34 @@
 
   <div class="padding-lr-15 padding-b-15">
     <div class="form-group" [ngClass]="{'has-error': form.get('codeValue').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
-      <label class="bold">Mã phòng ban</label>
-      <input type="text" class="form-control" placeholder="Nhập mã phòng ban" autocomplete="off" name="codeValue" formControlName="codeValue">
+      <label class="bold">Department code</label>
+      <input type="text" class="form-control" placeholder="Please enter a department code" autocomplete="off" name="codeValue" formControlName="codeValue">
     </div>
     <div ngxErrors="codeValue" class="has-danger">
         <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
-            Mã phòng ban không bỏ trống
+          Department code is not empty
         </small>
     </div>
 
     <div class="form-group"  [ngClass]="{'has-error': form.get('name').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
-        <label class="bold">Tên phòng ban</label>
-        <input class="form-control" placeholder="Nhập tên phòng ban" autocomplete="off" name="name" formControlName="name">
+        <label class="bold">Department name</label>
+        <input class="form-control" placeholder="Please enter a department name" autocomplete="off" name="name" formControlName="name">
     </div>
     <div ngxErrors="name" class="has-danger">
         <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
-            Tên phòng ban không bỏ trống
+            Department name is not empty
         </small>
     </div>
   </div>
 
   <div style="background: #25aed7; padding: 5px 10px">
     <button (click)="save()" [disabled]="!form.valid" type="button" class="btn btn-success padding-tb-2 margin-r-7">
-      <i class="fa fa-save"></i> Lưu
+      <i class="fa fa-save"></i> Save
     </button>
     <button *ngIf="!isNew" (click)="delete()" type="button" class="btn btn-danger padding-tb-2">
-      <i class="fa fa-recycle"></i> Xóa</button>
+      <i class="fa fa-recycle"></i> Remove</button>
     <button (click)="_modalRef.hide()" type="button" class="btn btn-dark padding-tb-2 pull-right active">
-      <i class="fa fa-remove"></i> Đóng</button>
+      <i class="fa fa-remove"></i> Close</button>
   </div>
 
 </form>

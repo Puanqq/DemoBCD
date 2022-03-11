@@ -83,7 +83,7 @@ export class AddUserOrganizationComponent implements OnInit {
 		let input = UserOrganizationInputDto.fromJS(this.form.value);
 
 		this._userOrganizationServiceProxy.create(input).subscribe(res => {
-			toastr.success("Lưu thành công");
+			toastr.success("Save successfully");
 			this.onSave.next();
 			this._modalRef.hide();
 		});

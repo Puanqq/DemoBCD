@@ -1,56 +1,57 @@
 ﻿
-<form autocomplete="off" class="login-form" style="margin-top: 150px;" [formGroup]="form" novalidate (ngSubmit)="save()">
+<div autocomplete="off" class="login-form" style="margin-top: 150px;" [formGroup]="form" novalidate>
 
-    <h3 class="text-center" style="color: #73baed;">Đăng ký tài khoản</h3>
+    <h3 class="text-center" style="color: #73baed;">Register an account</h3>
 
-    <div class="form-group"  [ngClass]="{'has-error': form.get('surname').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
-        <label class="bold">Họ và tên lót</label>
-        <input class="form-control" placeholder="Nhập họ" autocomplete="off" formControlName="surname">
-    </div>
-    <div ngxErrors="surname" class="has-danger">
-        <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
-            Họ không bỏ trống
-        </small>
-    </div>
-
+    
     <div class="form-group"  [ngClass]="{'has-error': form.get('name').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
-        <label class="bold">Tên</label>
-        <input class="form-control" placeholder="Nhập tên" autocomplete="off" formControlName="name">
+        <label class="bold">Name</label>
+        <input class="form-control" placeholder="Please enter a name" autocomplete="off" formControlName="name">
     </div>
     <div ngxErrors="name" class="has-danger">
         <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
-            Mật khẩu không bỏ trống
+            Name are not empty
+        </small>
+    </div>
+
+    <div class="form-group"  [ngClass]="{'has-error': form.get('surname').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
+        <label class="bold">Surname</label>
+        <input class="form-control" placeholder="Please enter a surname" autocomplete="off" formControlName="surname">
+    </div>
+    <div ngxErrors="surname" class="has-danger">
+        <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
+            Surname are not empty
         </small>
     </div>
 
     <div class="form-group" [ngClass]="{'has-error': form.get('userName').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
-        <label class="bold">Tài khoản</label>
-        <input type="text" class="form-control" placeholder="Nhập tài khoản" autocomplete="off" name="userName" formControlName="userName">
+        <label class="bold">Username</label>
+        <input type="text" class="form-control" placeholder="Please enter a userName" autocomplete="off" name="userName" formControlName="userName">
     </div>
     <div ngxErrors="userName" class="has-danger">
         <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
-            Tài khoản không bỏ trống
+            Username is not empty
         </small>
         <small class="form-text text-danger" ngxError="maxlength" [when]="['dirty', 'touched']">
-            Số ký tự tối đa 255
+            Maximum number of characters 255
         </small>
     </div>
 
     <div class="form-group"  [ngClass]="{'has-error': form.get('password').errors && form.dirty  }" style="margin-top: 20px !important; margin-bottom: 5px !important;">
-        <label class="bold">Mật khẩu</label>
-        <input type="password" class="form-control" placeholder="Nhập mật khẩu" autocomplete="off" name="password" formControlName="password">
+        <label class="bold">Password</label>
+        <input type="password" class="form-control" placeholder="Please enter a password" autocomplete="off" name="password" formControlName="password">
     </div>
     <div ngxErrors="password" class="has-danger">
         <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
-            Mật khẩu không bỏ trống
+            Password is not empty
         </small>
         <small class="form-text text-danger" ngxError="maxlength" [when]="['dirty', 'touched']">
-            Số ký tự tối đa 32
+            Maximum number of characters 32
         </small>
     </div>
 
     <div class="text-center" style="margin-top: 20px">
-        <button type="submit" class="btn btn-success btn-square btn-sm" [disabled]="form.invalid">Đăng ký</button>
+        <button (click)="save()" class="btn btn-success btn-square btn-sm" [disabled]="form.invalid">Sign Up</button>
     </div>
 
-</form>
+</div>
