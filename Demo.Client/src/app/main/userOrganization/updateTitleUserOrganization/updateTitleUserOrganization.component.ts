@@ -50,7 +50,7 @@ export class UpdateTitleUserOrganizationComponent implements OnInit {
 		let input = UpdateTitleUserOrganizationDto.fromJS(this.form.value);
 
 		this._userOrganizationServiceProxy.updateTitleUserOrganizationById(input).subscribe(res => {
-			toastr.success("Lưu thành công");
+			toastr.success("Save successfully");
 			this.onSave.next();
 			this._modalRef.hide();
 		});
@@ -58,7 +58,7 @@ export class UpdateTitleUserOrganizationComponent implements OnInit {
 
 	delete(){
 		this._userOrganizationServiceProxy.delete(this.form.get('id').value).subscribe(res => {
-			toastr.success("Xóa thành công");
+			toastr.success("Delete successfully");
 			this.onSave.next();
 			this._modalRef.hide();
 		})

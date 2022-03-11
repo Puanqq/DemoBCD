@@ -52,7 +52,7 @@ export class OrganizationComponent implements OnInit {
 		  keyboard: false,
 		  class: 'md',
 		  initialState: {
-			title: id ? 'Cập nhật phòng ban' : 'Thêm phòng ban',
+			title: id ? 'Update department' : 'Create a department',
 			id: id,
 			isNew: id ? false : true
 		  }

@@ -11,18 +11,18 @@
 
       <div class="padding-b-15 full-width" style="border-right: 1px dotted;">
 
-        <span class="font-size-16 display-block margin-b-5" style="color: blue;">Chọn nhân viên</span>
+        <span class="font-size-16 display-block margin-b-5" style="color: blue;">Choose an employee</span>
 
         <div *ngFor="let item of listUser; let index = index">
             <input (change)="selectUser(item.id, index)" [checked]="item._isCheck" type="radio" class="form-check-input margin-r-7">
-            <span class="font-size-15">{{ item.surname }} {{ item.name }}</span>
+            <span class="font-size-15">{{ item.name }} {{ item.surname }}</span>
         </div>
   
       </div>
 
       <div class="padding-b-15 full-width padding-l-10">
 
-        <span class="font-size-16 display-block margin-b-5" style="color: blue;">Chọn chức danh</span>
+        <span class="font-size-16 display-block margin-b-5" style="color: blue;">Choose a title</span>
 
         <div *ngFor="let item of listTile; let index = index">
           <input (change)="selectTitle(item.id, index)" [checked]="item._isCheck" type="radio" class="form-check-input margin-r-7">
@@ -38,9 +38,9 @@
 
   <div style="background: #25aed7; padding: 5px 10px">
     <button (click)="save()" [disabled]="!form.valid" type="button" class="btn btn-success padding-tb-2 margin-r-7">
-      <i class="fa fa-save"></i> Lưu</button>
+      <i class="fa fa-save"></i> Save</button>
     <button (click)="_modalRef.hide()" type="button" class="btn btn-dark padding-tb-2 pull-right active">
-      <i class="fa fa-remove"></i> Đóng</button>
+      <i class="fa fa-remove"></i> Close</button>
   </div>
 
 </form>

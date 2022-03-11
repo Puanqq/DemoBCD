@@ -55,7 +55,7 @@ export class OrganizationTitleComponent implements OnInit {
 		  keyboard: false,
 		  class: 'md',
 		  initialState: {
-			title: id ? 'Cập nhật phòng ban' : 'Thêm phòng ban',
+			title: id ? 'Update departmental titles' : 'Create departmental titles',
 			id: id,
 			isNew: id ? false : true
 		  }

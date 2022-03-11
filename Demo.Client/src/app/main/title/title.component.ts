@@ -52,7 +52,7 @@ export class TitleComponent implements OnInit {
 		  keyboard: false,
 		  class: 'md',
 		  initialState: {
-			title: id ? 'Cập nhật chức danh' : 'Thêm chức danh',
+			title: id ? 'Update title' : 'Create title',
 			id: id,
 			isNew: id ? false : true
 		  }

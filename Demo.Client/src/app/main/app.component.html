@@ -6,22 +6,22 @@
 
     <button *ngIf="_session.user" (click)="singout()" type="button" class="btn btn-secondary pull-right">
       <i class="fa fa-sign-out"></i>
-      Thoát
+      Sign out
     </button>
 
     <button *ngIf="_session.user" type="button" class="btn btn-success margin-r-5 pull-right">
       <i class="fa fa-user"></i>
-      {{ _session.user.surname }} {{ _session.user.name }}
+      {{ _session.user.name }} {{ _session.user.surname }}
     </button>
 
     <button routerLink="register" type="button" class="btn btn-danger margin-r-5 pull-right">
       <i class="fa fa-users"></i>
-      Đăng ký tài khoản
+      Sign up
     </button>
 
     <button routerLink="login" *ngIf="!_session.user" type="button" class="btn btn-success margin-r-5 pull-right">
       <i class="fa fa-user"></i>
-      Đăng nhập
+      Sign in
     </button>
     
   </div>
@@ -31,16 +31,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
           <ul class="nav navbar-nav">
             <li>
-              <a  routerLink="organization">Phòng ban</a>
+              <a  routerLink="organization">Departments</a>
             </li>
             <li>
-              <a routerLink="title">Chức danh</a>
+              <a routerLink="title">Titles</a>
             </li>
             <li>
-              <a routerLink="organization-title">Chức danh phòng ban</a>
+              <a routerLink="organization-title">Departmental titles</a>
             </li>
             <li>
-              <a routerLink="user-organization">Sơ đồ tổ chức</a>
+              <a routerLink="user-organization"> Organizational chart</a>
             </li>
           </ul>
         </div>

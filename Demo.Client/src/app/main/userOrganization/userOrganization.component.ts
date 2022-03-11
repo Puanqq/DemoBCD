@@ -36,7 +36,7 @@ export class UserOrganizationComponent implements OnInit {
 			keyboard: false,
 			class: 'md',
 			initialState: {
-				title: 'Thêm nhân viên',
+				title: 'More staff',
 				organization: _.cloneDeep(organization)
 			}
 		});
@@ -51,7 +51,7 @@ export class UserOrganizationComponent implements OnInit {
 			keyboard: false,
 			class: 'md',
 			initialState: {
-				title: 'Cập nhật chức danh',
+				title: 'Update titles for employees',
 				id: userOrganization.id,
 				titleId: userOrganization.titleId,
 				listTile: organization.titles ? JSON.parse(organization.titles) : []

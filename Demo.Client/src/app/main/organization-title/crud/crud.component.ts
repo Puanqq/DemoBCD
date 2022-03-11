@@ -70,7 +70,7 @@ export class CrudOrganizationTitleComponent implements OnInit {
 		});
 
 		this._organizationServiceProxy.updateTitleOrganization(input).subscribe(res => {
-			toastr.success("Lưu thành công");
+			toastr.success("Save successfully");
 			this.onSave.next();
 			this._modalRef.hide();
 		});
@@ -79,7 +79,7 @@ export class CrudOrganizationTitleComponent implements OnInit {
 
 	delete(){
 		this._organizationServiceProxy.delete(this.form.get('id').value).subscribe(res => {
-			toastr.success("Xóa thành công");
+			toastr.success("Delete successfully");
 			this.onDelete.next();
 			this._modalRef.hide();
 		})
