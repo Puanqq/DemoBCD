@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
+using Demo.Service.Base.Dtos;
+using Demo.Service.Base.Enums;
+using Demo.Service.Base.Interfaces;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Filters;
@@ -23,9 +26,14 @@ namespace Demo.Service.Business.Controllers
     {
         private readonly ITitleManager _titleManager;
 
-        public TitleController(IRepository<Title, Guid> repository, IMapper mapper, ITitleManager titleManager) : base(repository, mapper)
+        public TitleController(
+            IRepository<Title, Guid> repository, 
+            IMapper mapper, 
+            IExcelManager excelManager,
+            ITitleManager titleManager) : base(repository, mapper, excelManager)
         {
             _titleManager = titleManager;
+            SetConfigHeaderExportExcel();
         }
 
         [NotAllowSpecialCharacters("CodeValue")]
@@ -48,6 +56,27 @@ namespace Demo.Service.Business.Controllers
             _titleManager.DeleteTitleOrganizationAsync(id).Wait();
 
             return result;
+        }
+
+        private void SetConfigHeaderExportExcel()
+        {
+            var obj = new TitleOutputDto();
+
+            _excelHeader = new List<ExcelHeader>()
+            {
+                new ExcelHeader()
+                {
+                    Key = nameof(obj.CodeValue),
+                    Value = "Title code",
+                    Type = ExcelType.Default
+                },
+                new ExcelHeader()
+                {
+                    Key = nameof(obj.Name),
+                    Value = "Title Name",
+                    Type = ExcelType.Default
+                }
+            };
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
-using Demo.Service.Business.Managers;
-using Demo.Service.Dtos;
-using Demo.Service.Filters;
-using Demo.Service.Interfaces;
+using Demo.Service.Base.Dtos;
+using Demo.Service.Base.Enums;
+using Demo.Service.Base.Interfaces;
 using Demo.UnitOfWork.interfaces;
 using LinqKit;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -23,11 +23,51 @@ namespace Demo.Service.Business.Controllers
     public class AbcController : Controller
     {
         private readonly IRepository<Organization, Guid> _repository;
+        private readonly IExcelManager _excelManager;
+        private List<ExcelHeader>  products = new List<ExcelHeader>();
 
         public AbcController(
-            IRepository<Organization, Guid> repository)
+            IRepository<Organization, Guid> repository,
+            IExcelManager excelManager)
         {
             _repository = repository;
+            _excelManager = excelManager;
+        }
+
+        [HttpPost]
+        public async Task A()
+        {
+            var p = typeof(Organization).Name;
+
+            var obj = new Organization();
+
+            products = new List<ExcelHeader>()
+            {
+                new ExcelHeader()
+                {
+                    Key = nameof(obj.CodeValue),
+                    Value = "Code Value",
+                    Type = ExcelType.Default
+                },
+                new ExcelHeader()
+                {
+                    Key = nameof(obj.Name),
+                    Value = "Code Value",
+                    Type = ExcelType.Default
+                },
+                new ExcelHeader()
+                {
+                    Key = nameof(obj.CreatedTime),
+                    Value = "Code Value",
+                    Type = ExcelType.DateTime
+                }
+            };
+             
+            var query = _repository.Query;
+
+            var list2 = await query.OrderBy(o => o.Name).ToListAsync();
+
+            _excelManager.ExportExcelDefault<Organization>(products, list2);
         }
 
 

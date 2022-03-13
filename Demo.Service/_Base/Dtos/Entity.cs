@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.Service.Dtos
+namespace Demo.Service.Base.Dtos
 {
     public class EntityDto<TPrimaryKey> : IEntityDto<TPrimaryKey> where TPrimaryKey : struct
     {

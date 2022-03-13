@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Demo.EntityFramework.Entities;
-using Demo.Service.Dtos;
-using Demo.Service.Enums;
+using Demo.Service.Base.Dtos;
+using Demo.Service.Base.Enums;
+using Demo.Service.Base.Interfaces;
 using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,14 +25,19 @@ namespace Demo.Service.Base
     {
         private readonly IRepository<TEntity, TPrimaryKey> _repository;
         private readonly IMapper _mapper;
+        private readonly IExcelManager _excelManager;
+
+        protected List<ExcelHeader> _excelHeader = new List<ExcelHeader>();
 
         public BaseCrudAsyncController(
             IRepository<TEntity, TPrimaryKey> repository,
-            IMapper mapper
+            IMapper mapper,
+            IExcelManager excelManager
         )
         {
             _mapper = mapper;
             _repository = repository;
+            _excelManager = excelManager;
         }
 
         [HttpGet("{id}")]
@@ -52,11 +57,32 @@ namespace Demo.Service.Base
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        public virtual async Task<ActionResult<FileDto>> ExportExcelDefaultAsync([FromBody] TPaginationInputDto input)
+        {
+            var pagination = await GetAllAsync(input);
+
+            var result = _excelManager.ExportExcelDefault<TEntityOutputDto>(_excelHeader, ((PaginationOutputDto<TEntityOutputDto>)((OkObjectResult)pagination.Result).Value).Items);
+
+            return result;
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public virtual async Task<ActionResult<PaginationOutputDto<TEntityOutputDto>>> GetAllAsync([FromBody] TPaginationInputDto input)
         {
+
+            if(input.MaxCountResult == 0)
+            {
+                return new PaginationOutputDto<TEntityOutputDto>()
+                {
+                    Items = new List<TEntityOutputDto>(),
+                    TotalCount = 0
+                };
+            }
+
             var query = _repository.Query;
 
-            if(input.ListCriteria != null && input.ListCriteria.Count() > 0)
+            if (input.ListCriteria != null && input.ListCriteria.Count() > 0)
             {
 
                 foreach (var item in input.ListCriteria)
@@ -81,7 +107,6 @@ namespace Demo.Service.Base
                     }
 
                 }
-
             }
 
             if(input.Sorting != null)
@@ -89,7 +114,7 @@ namespace Demo.Service.Base
                 var arr = input.Sorting.Split(" ");
 
                 var property = arr[0];
-                var typeSorting = arr[0];
+                var typeSorting = arr[1];
 
                 switch (typeSorting)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo.Service.Base.Dtos;
+using System;
 
 namespace Demo.Service.Dtos
 {

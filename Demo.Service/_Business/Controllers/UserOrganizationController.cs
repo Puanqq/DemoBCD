@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
+using Demo.Service.Base.Dtos;
+using Demo.Service.Base.Interfaces;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Interfaces;
@@ -8,6 +10,7 @@ using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,13 +27,20 @@ namespace Demo.Service.Business.Controllers
         private readonly IUserOrganizationManager _userOrganizationManager;
         private readonly IRepository<UserOrganization, Guid> _repository;
 
+
         public UserOrganizationController(
-            IRepository<UserOrganization, Guid> repository,
-            IMapper mapper,
-            IUserOrganizationManager userOrganizationManager) : base(repository, mapper)
+            IRepository<UserOrganization, Guid> repository, 
+            IMapper mapper, 
+            IExcelManager excelManager,
+            IUserOrganizationManager userOrganizationManager) : base(repository, mapper, excelManager)
         {
             _userOrganizationManager = userOrganizationManager;
             _repository = repository;
+        }
+
+        public override Task<ActionResult<FileDto>> ExportExcelDefaultAsync([FromBody] PaginationInputDto input)
+        {
+            return base.ExportExcelDefaultAsync(input);
         }
 
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -38,6 +48,7 @@ namespace Demo.Service.Business.Controllers
         {
             if (_repository.Query.Any(a => a.OrganizationId == input.OrganizationId && a.UserId == input.UserId))
             {
+                Log.Error("user already exists in the department");
                 return BadRequest("user already exists in the department");
             }
             return await base.CreateAsync(input);
