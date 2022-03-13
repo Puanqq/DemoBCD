@@ -1,4 +1,5 @@
-﻿using Demo.Service.Dtos;
+﻿using Demo.Service.Base.Dtos;
+using Demo.Service.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace Demo.Service.Interfaces
         Task<List<UserOrganizationOutputDto>> GetListUserOrganizationByOrganizationIdAsync(Guid organizationId);
 
         Task UpdateTitleUserOrganizationByIdAsync(UpdateTitleUserOrganizationDto input);
+
+        Task<FileOutputDto> ReportExcelAsync();
     }
 }

@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Demo.Service.Interfaces;
+using Demo.Service.Base.Interfaces;
+using Demo.Service.Base.Managers;
 
 namespace Demo.Service.Services
 {
@@ -19,6 +21,7 @@ namespace Demo.Service.Services
         {
             services.AddTransient<ExceptionHandlerMiddleware>();
 
+            services.AddTransient<IExcelManager, ExcelManager>();
             services.AddTransient<IUserResolverService, UserResolverService>();
             services.AddTransient<ITokenManager, TokenManager>(); 
             services.AddTransient<ITitleManager, TitleManager>(); 

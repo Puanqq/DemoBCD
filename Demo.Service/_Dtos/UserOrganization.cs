@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo.Service.Base.Dtos;
+using System;
 
 namespace Demo.Service.Dtos
 {
@@ -50,5 +51,18 @@ namespace Demo.Service.Dtos
         public string CodeValue { get; set; }
 
         public string Name { get; set; }
+    }
+
+    public class ExportExcelUserOrganizationDto
+    {
+        public string UserName { get; set; }
+
+        public string Name { get; set; }
+
+        public string Surname { get; set; }
+
+        public string OrganizationName { get; set; }
+
+        public string TitleName { get; set; }
     }
 }

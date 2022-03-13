@@ -1,8 +1,7 @@
 ﻿using Demo.EntityFramework.Entities;
+using Demo.Service.Base.Dtos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Demo.Service.Dtos
 {
