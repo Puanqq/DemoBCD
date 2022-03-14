@@ -7,6 +7,7 @@ using Demo.UnitOfWork.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,6 +46,7 @@ namespace Demo.Service.Base
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TEntityOutputDto>> GetAsync(TPrimaryKey id)
         {
+            Log.Information("GET method {GetAsync} in BaseCrudAsyncController");
             var entity = await _repository.GetAsync(id);
 
             if (entity == null)
@@ -59,6 +61,7 @@ namespace Demo.Service.Base
         [ProducesResponseType(StatusCodes.Status200OK)]
         public virtual async Task<ActionResult<FileDto>> ExportExcelDefaultAsync([FromBody] TPaginationInputDto input)
         {
+            Log.Information("Post method {ExportExcelDefaultAsync} in BaseCrudAsyncController");
             var pagination = await GetAllAsync(input);
 
             var result = _excelManager.ExportExcelDefault<TEntityOutputDto>(_excelHeader, ((PaginationOutputDto<TEntityOutputDto>)((OkObjectResult)pagination.Result).Value).Items);
@@ -108,8 +111,12 @@ namespace Demo.Service.Base
 
                 }
             }
+            else
+            {
+                Log.Warning("Warning: Input is null");
+            }
 
-            if(input.Sorting != null)
+            if (input.Sorting != null)
             {
                 var arr = input.Sorting.Split(" ");
 
@@ -146,6 +153,11 @@ namespace Demo.Service.Base
         public virtual async Task<ActionResult<List<TEntityOutputDto>>> GetListAsync()
         {
             var query = await _repository.GetListAsync();
+            if (query == null)
+            {
+                Log.Information("This is no data. From GET {GetListAsync} method");
+                return Ok("null");
+            }
 
             return Ok(query.JsonMapTo<List<TEntityOutputDto>>());
         }
@@ -156,6 +168,7 @@ namespace Demo.Service.Base
         {
             var query = await _repository.InsertAsync(input.JsonMapTo<TEntity>());
 
+            Log.Information("Post method {CreateAsync} in BaseCrudAsyncController");
             return Ok(query.JsonMapTo<TEntityOutputDto>());
         }
 
@@ -167,6 +180,7 @@ namespace Demo.Service.Base
 
             if (entity == null)
             {
+                Log.Warning($"[Update Action]: Can't find Id { input.Id.ToString() }");
                 return NotFound($"Can't find Id { input }");
             }
 
@@ -185,6 +199,7 @@ namespace Demo.Service.Base
 
             if (entity == null)
             {
+                Log.Warning($"[Delete Action]: Can't find Id { id }");
                 return NotFound($"Can't find Id { id }");
             }
 

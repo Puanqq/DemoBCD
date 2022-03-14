@@ -22,8 +22,9 @@ namespace Demo.Service
             .WriteTo.Console(/*outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {CorrelationId} {Level:u3}] {Message:lj}{NewLine}{Exception}"*/)
             .WriteTo.File(
                 new JsonFormatter(),
-                "./App_Data/log.json",
-                fileSizeLimitBytes: 1_000_000,
+                $"./App_Data/log_{DateTime.UtcNow.ToString("dd-MM-yyyy")}.json",
+                fileSizeLimitBytes: 3 * 1024 * 1024, //log file size is 3mb
+                retainedFileCountLimit: 2,
                 rollOnFileSizeLimit: true,
                 shared: true,
                 flushToDiskInterval: TimeSpan.FromSeconds(1))
