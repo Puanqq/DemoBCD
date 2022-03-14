@@ -18,9 +18,17 @@ namespace Demo.Service.Exceptions
         {
         }
     }
+
     public class LoginException : Exception
     {
         public LoginException(string message) : base(message)
+        {
+        }
+    }
+
+    public class UserNotFoundException : Exception
+    {
+        public UserNotFoundException(string message) : base(message)
         {
         }
     }

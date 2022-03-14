@@ -48,6 +48,14 @@ namespace Demo.Service.Middlewares
                     Log.Warning(item.Description);
                 }
             }
+            catch(UserNotFoundException ex)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+
+                await context.Response.WriteAsJsonAsync(ex.Message);
+
+                Log.Error(ex.Message);
+            }
         }
     }
 }
