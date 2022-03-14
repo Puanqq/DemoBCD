@@ -21,6 +21,7 @@ namespace Demo.Service.Services
         {
             services.AddTransient<ExceptionHandlerMiddleware>();
 
+            services.AddTransient<IFileManager, FileManager>();
             services.AddTransient<IExcelManager, ExcelManager>();
             services.AddTransient<IUserResolverService, UserResolverService>();
             services.AddTransient<ITokenManager, TokenManager>(); 

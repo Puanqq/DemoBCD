@@ -4,8 +4,11 @@ using Demo.Service.Base;
 using Demo.Service.Base.Dtos;
 using Demo.Service.Base.Enums;
 using Demo.Service.Base.Interfaces;
+using Demo.Service.Dtos;
+using Demo.Service.Enums;
 using Demo.UnitOfWork.interfaces;
 using LinqKit;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,49 +28,41 @@ namespace Demo.Service.Business.Controllers
         private readonly IRepository<Organization, Guid> _repository;
         private readonly IExcelManager _excelManager;
         private List<ExcelHeader>  products = new List<ExcelHeader>();
+        private IFileManager _fileManager;
+        private UserManager<User> _userManager;
+        private IMapper _mapper;
 
         public AbcController(
             IRepository<Organization, Guid> repository,
+            UserManager<User> userManager,
+            IFileManager fileManager,
+            IMapper mapper,
             IExcelManager excelManager)
         {
             _repository = repository;
             _excelManager = excelManager;
+            _fileManager = fileManager;
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpPost]
         public async Task A()
         {
-            var p = typeof(Organization).Name;
+            var id = "964E50FC-8F24-4AFD-3ACE-08DA03009A78";
 
-            var obj = new Organization();
+            var user = await _userManager.FindByIdAsync(id);
 
-            products = new List<ExcelHeader>()
+            var a = new UpdateUserInfomationInputDto()
             {
-                new ExcelHeader()
-                {
-                    Key = nameof(obj.CodeValue),
-                    Value = "Code Value",
-                    Type = ExcelType.Default
-                },
-                new ExcelHeader()
-                {
-                    Key = nameof(obj.Name),
-                    Value = "Code Value",
-                    Type = ExcelType.Default
-                },
-                new ExcelHeader()
-                {
-                    Key = nameof(obj.CreatedTime),
-                    Value = "Code Value",
-                    Type = ExcelType.DateTime
-                }
+                UserName = "abcd2",
+                Name = "aa",
+                Surname = "aaa"
             };
-             
-            var query = _repository.Query;
 
-            var list2 = await query.OrderBy(o => o.Name).ToListAsync();
-
-            _excelManager.ExportExcelDefault<Organization>(products, list2);
+            user = _mapper.Map<UpdateUserInfomationInputDto, User>(a, user);
+            //user.NormalizedUserName = _userManager.NormalizeName(user.UserName);
+            await _userManager.UpdateAsync(user);
         }
 
 

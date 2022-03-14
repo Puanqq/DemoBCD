@@ -14,5 +14,6 @@ namespace Demo.EntityFramework.Entities
         [StringLength(64)]
         public virtual string Name { get; set; }
 
+        public string Avatar { get; set; }
     }
 }

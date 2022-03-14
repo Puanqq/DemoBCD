@@ -1,7 +1,10 @@
 ﻿using Demo.EntityFramework.Entities;
 using Demo.Service.Base;
+using Demo.Service.Base.Dtos;
+using Demo.Service.Base.Interfaces;
 using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
+using Demo.Service.Enums;
 using Demo.Service.Exceptions;
 using Demo.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -19,8 +22,8 @@ namespace Demo.Service.Business.Controllers
     [Route("api/[controller]/[action]")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly ITokenManager _tokenManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ITokenManager _tokenManager;
         private readonly IRegiterManager _regiterManager;
         private readonly IUserResolverService _userResolverService;
 
@@ -79,6 +82,27 @@ namespace Demo.Service.Business.Controllers
             }
 
             return Ok(result.JsonMapTo<RegisterUserOutputDto>());
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task UpdateAvatarUserAsync([FromBody] FileInputDto input)
+        {
+            await _regiterManager.UpdateAvatarUserAsync(input);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task UpdateInfomationUserAsync([FromBody] UpdateUserInfomationInputDto input)
+        {
+            await _regiterManager.UpdateInfomationUserAsync(input);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task UpdateUserPasswordAsync(string input)
+        {
+            await _regiterManager.UpdateUserPasswordAsync(input);
         }
     }
   

@@ -16,7 +16,8 @@ namespace Demo.Service.Base.Dtos
         public ExcelType Type { get; set; }
     }
 
-    public class FileDto
+ 
+    public class FileEntity
     {
         public string Id { get; set; }
 
@@ -27,9 +28,19 @@ namespace Demo.Service.Base.Dtos
         public string Type { get; set; }
     }
 
-    public class FileInputDto : FileDto
+    public class FileDto : FileEntity
     {
 
+    }
+
+
+    public class FileInputDto 
+    {
+        public string Name { get; set; }
+
+        public string Data { get; set; }
+
+        public string Type { get; set; }
     }
 
     public class FileOutputDto : FileDto

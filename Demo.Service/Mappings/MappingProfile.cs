@@ -12,6 +12,7 @@ namespace Demo.Service.Mappings
             CreateMap<OrganizationInputDto, Organization>().ForMember(f => f.Titles, a => a.Ignore());
             CreateMap<TitleInputDto, Title>();
             CreateMap<UserOrganizationInputDto, UserOrganization>();
+            CreateMap<UpdateUserInfomationInputDto, User>();
         }
     }
 }
