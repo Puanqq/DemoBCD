@@ -23,6 +23,7 @@ namespace Demo.Service.Business.Consumers
         }
         public async Task Consume(ConsumeContext<TitleMessage> context)
         {
+            Log.Information("There is an updated title");
             var title = context.Message.Title.JsonMapTo<TitleInputDto>();
 
             var listOrganizations = await _organizationRepository.Query.Where(w => w.Titles.Contains(title.Id.ToString())).ToListAsync();

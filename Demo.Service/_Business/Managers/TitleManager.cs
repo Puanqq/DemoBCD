@@ -11,6 +11,7 @@ using Demo.UnitOfWork.interfaces;
 using MassTransit;
 using Demo.Service.Dtos.Message;
 using Demo.Service.Interfaces;
+using Serilog;
 
 namespace Demo.Service.Business.Managers
 {
@@ -33,23 +34,37 @@ namespace Demo.Service.Business.Managers
 
         public async Task<ActionResult> UpdateTitleOrganizationAsync(Title input)
         {
-            await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
+            try
             {
-                CorrelationId = Guid.NewGuid(),
-                IsUpdate = true,
-                Title = input
-            });
+                await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
+                {
+                    CorrelationId = Guid.NewGuid(),
+                    IsUpdate = true,
+                    Title = input
+                });
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message, ex);
+            }
             return null;
         }
 
         public async Task<ActionResult> DeleteTitleOrganizationAsync(Guid id)
         {
-            await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
+            try
             {
-                CorrelationId = Guid.NewGuid(),
-                IsUpdate = false,
-                Title = new Title() { Id = id }
-            });
+                await _publishEndpoint.Publish<TitleMessage>(new TitleMessage
+                {
+                    CorrelationId = Guid.NewGuid(),
+                    IsUpdate = false,
+                    Title = new Title() { Id = id }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message, ex);
+            }
 
             return null;
         }
