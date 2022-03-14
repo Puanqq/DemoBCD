@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Demo.Service.Interfaces;
+using Serilog;
 
 namespace Demo.Service.Business.Consumers
 {
