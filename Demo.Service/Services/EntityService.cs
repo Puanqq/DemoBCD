@@ -17,7 +17,7 @@ namespace Demo.Service.Services
         public static void AddDbContextRegister(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(_defaultConnection)))
+                .AddDbContext<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString(_defaultConnection)))
                 .AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
         }
