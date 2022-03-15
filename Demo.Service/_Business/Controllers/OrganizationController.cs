@@ -53,6 +53,17 @@ namespace Demo.Service.Business.Controllers
             return _organizationManager.UpdateTitleOrganizationAsync(input);
         }
 
+
+        [HttpPost]
+        public async Task<ActionResult<FileOutputDto>> ExportExcelOrganizationTitleAsync([FromBody] PaginationInputDto input)
+        {
+            var pagination = await base.GetAllAsync(input);
+
+            var list = ((PaginationOutputDto<OrganizationOutputDto>)((OkObjectResult) pagination.Result).Value).Items;
+
+            return _organizationManager.ExportExcelOrganizationTitleAsync(list);
+        }
+
         private void SetConfigHeaderExportExcel()
         {
             var obj = new OrganizationOutputDto();
@@ -70,6 +81,12 @@ namespace Demo.Service.Business.Controllers
                     Key = nameof(obj.Name),
                     Value = "Department Name",
                     Type = ExcelType.Default
+                },
+                new ExcelHeader()
+                {
+                    Key = nameof(obj.CreatedTime),
+                    Value = "Created Time",
+                    Type = ExcelType.DateTime
                 }
             };
         }

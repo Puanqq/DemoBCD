@@ -70,7 +70,7 @@ namespace Demo.Service.Base.Managers
                 return new FileOutputDto()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Name = Guid.NewGuid().ToString(),
+                    Name = Guid.NewGuid().ToString() + ".xls",
                     Data = base64,
                     Type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 };

@@ -1,4 +1,6 @@
-﻿using Demo.Service.Dtos;
+﻿using Demo.Service.Base.Dtos;
+using Demo.Service.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,7 @@ namespace Demo.Service.Interfaces
     public interface IOrganizationManager
     {
         Task UpdateTitleOrganizationAsync(TitleOrganizationInputDto input);
+
+        ActionResult<FileOutputDto> ExportExcelOrganizationTitleAsync(List<OrganizationOutputDto> list);
     }
 }

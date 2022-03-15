@@ -57,7 +57,7 @@ namespace Demo.Service.Base
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public virtual async Task<ActionResult<FileDto>> ExportExcelDefaultAsync([FromBody] TPaginationInputDto input)
+        public virtual async Task<ActionResult<FileOutputDto>> ExportExcelDefaultAsync([FromBody] TPaginationInputDto input)
         {
             var pagination = await GetAllAsync(input);
 
@@ -135,7 +135,7 @@ namespace Demo.Service.Base
             var result = new PaginationOutputDto<TEntityOutputDto>()
             {
                 Items = items.JsonMapTo<List<TEntityOutputDto>>(),
-                TotalCount = await _repository.Query.CountAsync()
+                TotalCount = await query.CountAsync()
             };
 
             return Ok(result);
