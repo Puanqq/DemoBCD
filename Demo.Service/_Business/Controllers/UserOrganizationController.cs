@@ -38,7 +38,7 @@ namespace Demo.Service.Business.Controllers
             _repository = repository;
         }
 
-        public async  override Task<ActionResult<FileDto>> ExportExcelDefaultAsync([FromBody] PaginationInputDto input)
+        public async override Task<ActionResult<FileOutputDto>> ExportExcelDefaultAsync([FromBody] PaginationInputDto input)
         {
             return await _userOrganizationManager.ReportExcelAsync();
         }

@@ -21,6 +21,8 @@ namespace Demo.Service.Dtos
         public string Titles { get; set; }
 
         public virtual IEnumerable<UserOrganization> UserOrganizations { get; set; }
+
+        public DateTime CreatedTime { get; set; }
     }
 
     public class TitleOrganizationInputDto : EntityDto<Guid>
