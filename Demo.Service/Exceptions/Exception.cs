@@ -31,5 +31,10 @@ namespace Demo.Service.Exceptions
         public UserNotFoundException(string message) : base(message)
         {
         }
+    }public class UploadFileException : Exception
+    {
+        public UploadFileException(string message) : base(message)
+        {
+        }
     }
 }
