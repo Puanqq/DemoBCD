@@ -87,7 +87,7 @@ namespace Demo.Service.Business.Controllers
 
         [HttpPut]
         [Authorize]
-        [AllowImageExtensionFiles("Type")]
+        [CheckTypeFileAttribute ("Type")]
         public async Task UpdateAvatarUserAsync([FromBody] FileInputDto input)
         {
             await _regiterManager.UpdateAvatarUserAsync(input);
