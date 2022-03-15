@@ -45,15 +45,14 @@ namespace Demo.Service.Base
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TEntityOutputDto>> GetAsync(TPrimaryKey id)
-        {
-            Log.Information("GET method {GetAsync} in BaseCrudAsyncController");
+        {            
             var entity = await _repository.GetAsync(id);
 
             if (entity == null)
             {
                 return NotFound($"Can't find Id { id }");
             }
-
+            Log.Information("GET method {GetAsync} in BaseCrudAsyncController");
             return Ok(entity.JsonMapTo<TEntityOutputDto>());
         }
 
@@ -61,11 +60,11 @@ namespace Demo.Service.Base
         [ProducesResponseType(StatusCodes.Status200OK)]
         public virtual async Task<ActionResult<FileOutputDto>> ExportExcelDefaultAsync([FromBody] TPaginationInputDto input)
         {
-            Log.Information("Post method {ExportExcelDefaultAsync} in BaseCrudAsyncController");
+            
             var pagination = await GetAllAsync(input);
 
             var result = _excelManager.ExportExcelDefault<TEntityOutputDto>(_excelHeader, ((PaginationOutputDto<TEntityOutputDto>)((OkObjectResult)pagination.Result).Value).Items);
-
+            Log.Information("Post method {ExportExcelDefaultAsync} in BaseCrudAsyncController");
             return result;
         }
 
@@ -155,8 +154,8 @@ namespace Demo.Service.Base
             var query = await _repository.GetListAsync();
             if (query == null)
             {
-                Log.Information("This is no data. From GET {GetListAsync} method");
-                return Ok("null");
+                Log.Warning("This is no data. From GET {GetListAsync} method");
+                return NotFound("Query data: none");
             }
 
             return Ok(query.JsonMapTo<List<TEntityOutputDto>>());

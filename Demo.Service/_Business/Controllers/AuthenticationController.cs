@@ -6,6 +6,7 @@ using Demo.Service.Business.Managers;
 using Demo.Service.Dtos;
 using Demo.Service.Enums;
 using Demo.Service.Exceptions;
+using Demo.Service.Filters;
 using Demo.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -86,6 +87,7 @@ namespace Demo.Service.Business.Controllers
 
         [HttpPut]
         [Authorize]
+        [AllowImageExtensionFiles("Type")]
         public async Task UpdateAvatarUserAsync([FromBody] FileInputDto input)
         {
             await _regiterManager.UpdateAvatarUserAsync(input);
